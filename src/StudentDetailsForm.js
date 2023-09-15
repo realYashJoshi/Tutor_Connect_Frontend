@@ -20,7 +20,7 @@ function StudentDetailsForm({ location }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:8083/createStudent', {
+    const response = await fetch('https://tutor-connect.onrender.com/createStudent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

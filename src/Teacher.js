@@ -11,8 +11,8 @@ function Teacher() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:8083/studentDetails/${username}`);
-        const data = await response.json();
+        const response = await fetch(`https://tutor-connect.onrender.com${username}`);
+        const data = await response.json();s
 
         if (data.studentDetails) {
           setStudentData(data.studentDetails);
