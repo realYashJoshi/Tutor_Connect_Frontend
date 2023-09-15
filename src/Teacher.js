@@ -12,7 +12,7 @@ function Teacher() {
     async function fetchData() {
       try {
         const response = await fetch(`https://tutor-connect.onrender.com${username}`);
-        const data = await response.json();s
+        const data = await response.json();
 
         if (data.studentDetails) {
           setStudentData(data.studentDetails);
