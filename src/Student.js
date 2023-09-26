@@ -202,7 +202,7 @@ function Student() {
               </div>
               <div className="card-footer d-flex align-items-center">
                 <img
-                  src={`${process.env.PUBLIC_URL}/images/human1.jpg`}
+                  src={`${process.env.PUBLIC_URL}/images/aarya.jpeg`}
                   alt="Person 1"
                   className="testimonial-image"
                   style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '50%', marginRight: '10px' }}
