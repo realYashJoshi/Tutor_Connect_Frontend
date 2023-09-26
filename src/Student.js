@@ -197,7 +197,7 @@ function Student() {
               <div className="card-body">
                
                 <p className="card-text">
-                " I am satisfied with the training given by TutorMe teachers. During training, the faculty was able to clear my doubts regarding design process followed in the industry and provide real life examples "
+                " I was a lazy person but this website made by my brother helped me connect to good teachers who motivated me to study harder!!Thank you Dada!
                 </p>
               </div>
               <div className="card-footer d-flex align-items-center">
@@ -208,7 +208,7 @@ function Student() {
                   style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '50%', marginRight: '10px' }}
                 />
                 <div className="ml-3">
-                  <h5 className="mb-0">John Doe</h5>
+                  <h5 className="mb-0">Aarya Joshi</h5>
                   <small>Student</small>
                 </div>
               </div>
