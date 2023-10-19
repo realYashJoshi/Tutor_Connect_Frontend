@@ -1,58 +1,8 @@
-// import React from 'react';
-// import { Link, Route, useNavigate,Router,Routes } from 'react-router-dom';
-// import SubjectTutors from './SubjectTutors';
-
-// function Student() {
-//   const courses = [
-//     { id: 1, title: 'Physics', image: 'physics.jpg', slug: 'physics' },
-//     { id: 2, title: 'Mathematics', image: 'mathematics.jpg', slug: 'mathematics' },
-//     { id: 3, title: 'Chemistry', image: 'chemistry.jpg', slug: 'chemistry' },
-//     { id: 4, title: 'Biology', image: 'biology.jpg', slug: 'biology' },
-//     { id: 5, title: 'Humanities', image: 'humanities.jpg', slug: 'humanities' },
-//     { id: 6, title: 'Computer', image: 'computer.jpg', slug: 'computer' },
-//   ];
-
-//   const navigate = useNavigate();
-
-//   return (
-//     <div className="container mt-5">
-//       <h2 style={{color:"white"}}>Available Courses --</h2>
-//       <div className="row">
-//         {courses.map((course) => (
-//           <div key={course.id} className="col-md-4 mb-4" >
-//             <div className="card d-flex flex-column justify-content-between">
-//               <img
-//                 src={`${process.env.PUBLIC_URL}/images/${course.image}`}
-//                 className="card-img-top img-fluid"
-//                 alt={course.title}
-//                 style={{ height: '200px', objectFit: 'cover' }}
-//               />
-//               <div className="card-body d-flex flex-column justify-content-between">
-//                 <h5 className="card-title">{course.title}</h5>
-//                 <button
-//                   className="btn btn-primary mt-auto"
-//                   onClick={() => navigate(`/student/${course.slug}`, { state: { subject: course.title } })}
-//                 >
-//                   Browse Tutors
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-      
-//       <Routes>
-//       <Route path="/student/:subject" element={<SubjectTutors />} /></Routes>
-//     </div>
-//   );
-// }
-
-// export default Student;
 import React from 'react';
 import { Link, Route, useNavigate, Router, Routes } from 'react-router-dom';
 import SubjectTutors from './SubjectTutors';
 import './Student.css';
-import { Carousel } from 'react-bootstrap';
+import { Carousel,Modal,Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState,useEffect } from 'react';
 import Navbar from './Navbar';
@@ -61,16 +11,22 @@ import {  faBook, faPhone, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab,faFacebook,faInstagram,faLinkedin,faTwitter } from '@fortawesome/free-brands-svg-icons'
 
+
 function Student() {
   const courses = [
-    { id: 1, title: 'Physics', image: 'physics.jpg', slug: 'physics' },
+    { id: 1, title: 'Physics', image: 'Physics.jpg', slug: 'physics' },
     { id: 2, title: 'Mathematics', image: 'mathematics.jpg', slug: 'mathematics' },
     { id: 3, title: 'Chemistry', image: 'chemistry.jpg', slug: 'chemistry' },
     { id: 4, title: 'Biology', image: 'biology.jpg', slug: 'biology' },
     { id: 5, title: 'Humanities', image: 'humanities.jpg', slug: 'humanities' },
     { id: 6, title: 'Computer', image: 'computer.jpg', slug: 'computer' },
   ];
-
+  const user = {
+    name: 'Yash N Joshi',
+    totalCourses: courses.length,
+    email: '20me02020@iitbbs.ac.in',
+    photo: 'images/me.png',
+  };
   const navigate = useNavigate();
   const [chatMessages, setChatMessages] = useState([
     { text: 'Hello, how can I help you?', type: 'received' },
@@ -97,23 +53,56 @@ function Student() {
     const handleSubmit=()=>{
       alert("Message received,we will revert back to you soon!!")
     }
+    const [showModal, setShowModal] = useState(false);
 
-
+  
+    const toggleBoxVisibility = () => {
+      setIsBoxVisible(!isBoxVisible);
+    };
+  const [isBoxVisible, setIsBoxVisible] = useState(true);
   return (
     <div>
-     
-      {/* <div className="hero-image">
-        
-        <img src={`${process.env.PUBLIC_URL}/images/hero.jpg`} alt="Hero" className="img-fluid" />
-        
-        <div className="hero-content">
-          <h1>Welcome to Our Online Learning Platform</h1>
-          <p>Explore a wide range of subjects and find the perfect tutor for your studies.</p>
-          <Link to="/about" className="btn btn-warning">Learn More</Link>
+        <button
+        onClick={toggleBoxVisibility}
+        style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          zIndex: '1000',
+          padding: '10px 20px',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+        }}
+      >User Profile</button>
+    {isBoxVisible && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '20px',
+            left: '20px',
+            border: '1px solid #ddd',
+            borderRadius: '5px',
+            padding: '20px',
+            maxWidth: '300px',
+            backgroundColor: 'white',
+            zIndex: '999', // Adjust the z-index value to ensure it is above other contents
+          }}
+        >
+          <img
+            src={process.env.PUBLIC_URL + '/' + user.photo}
+            alt="User"
+            style={{ width: '100px', height: '100px', borderRadius: '50%' }}
+          />
+          <h4>{user.name}</h4>
+          <p>Total Courses: {user.totalCourses}</p>
+          <p>Email: {user.email}</p>
         </div>
-        </div>
-          */}
-          <Navbar></Navbar>
+      )} 
+         
+        
           <div className="hero-image">
         <Carousel interval={2000} controls={false} autoPlay>
           <Carousel.Item>
@@ -197,18 +186,18 @@ function Student() {
               <div className="card-body">
                
                 <p className="card-text">
-                " I was a lazy person but this website made by my brother helped me connect to good teachers who motivated me to study harder!!Thank you Dada!
+                " I am satisfied with the training given by TutorMe teachers. During training, the faculty was able to clear my doubts regarding design process followed in the industry and provide real life examples "
                 </p>
               </div>
               <div className="card-footer d-flex align-items-center">
                 <img
-                  src={`${process.env.PUBLIC_URL}/images/aarya.jpeg`}
+                  src={`${process.env.PUBLIC_URL}/images/human1.jpg`}
                   alt="Person 1"
                   className="testimonial-image"
                   style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '50%', marginRight: '10px' }}
                 />
                 <div className="ml-3">
-                  <h5 className="mb-0">Aarya Joshi</h5>
+                  <h5 className="mb-0">John Doe</h5>
                   <small>Student</small>
                 </div>
               </div>
@@ -338,16 +327,16 @@ function Student() {
             <p>Phone: 7038636388</p>
           </div>
           <div className="col-md-4">
-            <h4>Send Us a Message</h4>
+            <h4>Send Us a FeedBack</h4>
             <form>
               <div className="mb-3">
-                <input type="text" className="form-control" placeholder="Name" />
+                <input type="text" className="form-control" placeholder="Course Id/Name" />
               </div>
               <div className="mb-3">
                 <input type="email" className="form-control" placeholder="Email" />
               </div>
               <div className="mb-3">
-                <textarea className="form-control" rows="4" placeholder="Message"></textarea>
+                <textarea className="form-control" rows="4" placeholder="Feedback"></textarea>
               </div>
               <button type="submit" className="btn btn-light" onClick={handleSubmit}>Submit</button>
             </form>
